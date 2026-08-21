@@ -76,6 +76,65 @@ public class TreeUsingOperations{
         return root;
     }
 
+    static void leftView(Node root){
+        if(root == null){
+            return ;
+        }
+        Queue<Node> q = new LinkedList<>();
+        q.add(root);
+        while(!q.isEmpty()){
+            int size = q.size();
+            for(int i=0;i<size;i++){
+                Node current = q.remove();
+                if(i==0){
+                    System.out.println("The left Node is : "+ current.data);
+                }
+                if(current.left != null){
+                    q.add(current.left);
+                }
+                if(current.right != null){
+                    q.add(current.right);
+                }
+            }
+        }
+    }
+
+    static void rightView(Node root){
+        if(root == null){
+            return;
+        }
+        Queue<Node> q = new LinkedList<>();
+        q.add(root);
+        while(!q.isEmpty()){
+            int size = q.size();
+            for(int i=0;i<size;i++){
+                Node current = q.remove();
+                if(i==size-1){
+                    System.out.println(current.data);
+                }
+                if(current.left != null){
+                    q.add(current.left);
+                }
+                if(current.right != null){
+                    q.add(current.right);
+                }
+            }
+        }
+    }
+
+    static int Accender(Node root,int p,int q){
+        if(root == null){
+            return 0;
+        }
+        if(p<root.data && q < root.data){
+            return Accender(root.left,p,q);
+        }
+        if(p>root.data && q > root.data){
+            return Accender(root.right,p,q);
+        }
+        return root.data;
+    }
+
 
     public static void main(String[] args) {
         Node root = createTree();
@@ -84,5 +143,10 @@ public class TreeUsingOperations{
         System.out.println("Total sum of the Tree : " + sum(root));
         System.out.println("The node is not found : " + search(root,50));
         System.out.println("The maximum value of the node : " + maximum(root).data);
+        System.out.println("Left side of the Node : ");
+        leftView(root);
+        rightView(root);
+        System.out.println("Accender data : ");
+        System.out.println(Accender(root,10,30));
     }
 }
