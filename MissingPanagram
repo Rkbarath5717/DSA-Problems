@@ -1,0 +1,19 @@
+class Solution {
+    public static String missingPanagram(String s) {
+        int count[] = new int[26];
+        for(int i=0;i<s.length();i++){
+            char c =Character.toLowerCase(s.charAt(i));
+            count[c-'a']++;
+        }
+        StringBuilder sb = new StringBuilder();
+        for(int i=0;i<26;i++){
+            if(count[i]==0){
+                sb.append((char)(i+'a'));
+            }
+        }
+        if(sb.length()==0){
+            return "-1";
+        }
+        return sb.toString();
+    }
+}
