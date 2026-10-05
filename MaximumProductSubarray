@@ -1,0 +1,17 @@
+class Solution {
+    public int maxProduct(int[] arr) {
+        int m1=arr[0];
+        int m2=arr[0];
+        int f=arr[0];
+        for(int i=1;i<arr.length;i++){
+            int c=arr[i];
+            int v1=m1*c;
+            int v2=m2*c;
+            m1=Math.max(c,Math.max(v1,v2));
+            m2=Math.min(c,Math.min(v1,v2));
+
+            f=Math.max(f,Math.max(m1,m2));
+        }
+        return f;
+    }
+}
